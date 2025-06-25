@@ -40,11 +40,9 @@ class MysqlConnector(Connector):
     def query(self,tableName:str,columns_list:list[str],condition:str="1=1",page_size:int=5):
         page = 1
         columns = "*" if columns_list else ",".join([column.join(["`","`"]) for column in columns_list])
-        SQL_STATEMENT = f"SELECT {columns} FROM {tableName} WHERE {condition};"
+        SQL_STATEMENT = f"SELECT {columns} FROM {tableName} WHERE {condition}"
         with self.connector.cursor(prepared=True,buffered=False) as cursor:
             while True:
-                print(SQL_STATEMENT+f" LIMIT {page_size} OFFSET {page*page_size}")
-                
                 cursor.execute(SQL_STATEMENT+f" LIMIT {page_size} OFFSET {page*page_size}")
                 chunk = cursor.fetchall()
                 if not chunk:

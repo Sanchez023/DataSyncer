@@ -47,6 +47,7 @@ class MysqlConnector(Connector):
     
     def close(self)->None:
         return self.connector.close()
+    
 if __name__ == "__main__":
     mysqlCon = MysqlConnector("localhost",3306,"leo","leo130")
     print(mysqlCon.testConnect())
