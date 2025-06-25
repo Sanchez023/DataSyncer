@@ -1,0 +1,8 @@
+# Define databases configuration
+dbs:
+  mysql-01:
+    type: mysql
+    ip: localhost
+    port: 3306
+    user: leo
+    passwd: leo130
