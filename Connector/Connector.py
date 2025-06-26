@@ -38,6 +38,10 @@ class ConnectPool:
 
 
 class MysqlConnector(Connector):
+    '''
+    自定义MYSQL连接器
+    
+    '''
 
     # 初始化mysql连接
     def __init__(self, host: str, port: int, user: str, passwd: str):
@@ -59,7 +63,7 @@ class MysqlConnector(Connector):
         print(f"连接状态{self.isAlive}")
         return self.isAlive
 
-    # 发送查询语句
+    # 发送限定的查询语句
     def query(
         self,
         tableName: str,
@@ -92,6 +96,9 @@ class MysqlConnector(Connector):
 
 
 class MysqlConnectPool(ConnectPool):
+    '''
+    自定义MYSQL连接池
+    '''
 
     def __init__(
         self,
@@ -107,7 +114,17 @@ class MysqlConnectPool(ConnectPool):
             pool_reset_session=pool_reset_session,
             **dbconfig,
         )
-        print(f"初始化MYSQL连接池")
+        print(f"初始化MYSQL连接池:连接池名称:{pool_name},连接池并发数量:{size},连接配置：{dbconfig}")
+
+    def batch_query(self,):
+        pass
+
+    def __enter__(self,):
+        return self
+    
+
+    def __exit__(self,):
+        del self.pool
 
 
 
