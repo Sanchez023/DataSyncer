@@ -6,3 +6,14 @@ dbs:
     port: 3306
     user: leo
     passwd: leo130
+
+kafkas:
+  server:
+    host: localhost 
+    port: 9092
+
+  producer:
+    maxProducer: 3
+ 
+  consumer:
+    maxConsumer: 10
