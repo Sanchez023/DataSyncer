@@ -1,3 +1,3 @@
-import utils
-print(utils.__file__)
+from MesQueue.Kafka import KaProducer
 
+kap = KaProducer()
